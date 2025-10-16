@@ -1,1 +1,2 @@
-k8s new config
+k8s
+k8s README

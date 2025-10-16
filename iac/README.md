@@ -1,2 +1,1 @@
-iac
-iac README
+iac update  config

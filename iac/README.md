@@ -1,1 +1,1 @@
-iac new config
+iac update  config

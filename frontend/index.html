@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vacation in Kyoto, Japan</title>
+
+    <!-- React + ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function VacationPage() {
+        const activities = [
+          "Stay overnight in a houseboat in Alleppey backwaters",
+          "Try authentic Kerala Sadya served on banana leaf",
+          "Watch Kathakali and Kalaripayattu performances",
+          "Relax at Kovalam beach and enjoy sunset",
+        ];
+
+        const attractions = [
+          "Alleppey Backwaters",
+          "Munnar Tea Plantations",
+          "Kovalam Beach",
+          "Athirappilly Waterfalls",
+          "Fort Kochi Chinese Fishing Nets",
+        ];
+
+        return (
+          <div style={{ fontFamily: "Arial, sans-serif", padding: "20px" }}>
+            <h1>Kerala, India</h1>
+
+            <img src="./kerala.jpg" alt="Kerala" width="500" />
+
+            <h2>Why I want to visit</h2>
+            <p>
+              I want to experience the tradition, culture.
+            </p>
+
+            <h2>Activities to do</h2>
+            <ul>
+              {activities.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+
+            <h2>Attractions to visit</h2>
+            <ol>
+              {attractions.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ol>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<VacationPage />);
+    </script>
+  </body>
+</html>

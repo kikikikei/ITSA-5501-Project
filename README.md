@@ -43,3 +43,19 @@ ITSA-5501-Project/
 2.Commit new change
 3.New pull request in GitHub 
 4.Sync before start to work
+
+## Milestone 2 – Docker Multi-Container System
+
+Includes:
+- frontend with local image
+- MongoDB
+- PostgreSQL
+- Redis cache
+- Prometheus monitoring
+
+### Commands
+
+docker compose up -d
+docker ps
+docker compose up -d --scale frontend=3
+docker compose down

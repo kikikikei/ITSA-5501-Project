@@ -1,0 +1,59 @@
+version: "3.9"
+
+services:
+  
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "9090:80"      
+    volumes:
+      
+      - ../frontend:/usr/share/nginx/html:ro
+    networks:
+      - app-network
+
+  
+  user-db:
+    image: mongo:latest
+    volumes:
+      - user_data:/data/db
+    networks:
+      - app-network
+
+  
+  product-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: product_user
+      POSTGRES_PASSWORD: product_password
+      POSTGRES_DB: products_db
+    volumes:
+      - product_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  
+  cache:
+    image: redis:alpine
+    networks:
+      - app-network
+
+  
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9091:9090"     
+    volumes:
+      - ../Prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    networks:
+      - app-network
+
+
+volumes:
+  user_data:
+  product_data:
+
+
+networks:
+  app-network:
+    driver: bridge

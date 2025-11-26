@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-sidecar-deployment
+spec:
+  replicas: 5 
+  selector:
+    matchLabels:
+      app: nginx-sidecar
+  template:
+    metadata:
+      labels:
+        app: nginx-sidecar
+    spec:
+      volumes:
+        - name: shared-data
+          emptyDir: {} 
+      containers:
+        - name: nginx-container
+          image: nginx:1.21
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: shared-data
+              mountPath: /usr/share/nginx/html 
+        - name: sidecar-container
+          image: busybox
+          command: ["/bin/sh", "-c"]
+          args:
+            - while true; do echo "Hello from sidecar" >> /data/log.txt; sleep 10; done 
+          volumeMounts:
+            - name: shared-data
+              mountPath: /data 

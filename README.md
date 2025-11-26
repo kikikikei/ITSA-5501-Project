@@ -59,3 +59,19 @@ docker compose up -d
 docker ps
 docker compose up -d --scale frontend=3
 docker compose down
+
+## MilStone 3
+
+We created a PVC with 
+
+name: pvc-local
+accessModes: ReadWriteOnce
+ storage: 500Mi
+
+2 container deployment:
+
+ Image: nginx, busybox
+
+ Service Port:
+ 
+ type: NodePort
